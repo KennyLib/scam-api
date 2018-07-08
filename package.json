@@ -1,7 +1,25 @@
 {
+  "name": "scam-api",
+  "version": "0.0.0.1",
+  "author": "Kenny",
+  "license": "MIT",
+  "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
     "models": "node conf/sequelize-auto.js"
+  },
+  "config": {
+    "host": "0.0.0.0",
+    "port": "8090",
+    "dbtype": "mysql",
+    "dblogin": "scam",
+    "dbpwd": "Xx521314",
+    "dbhost": "21.42.186.91",
+    "dbport": "3306",
+    "dbname": "scamDB"
+  },
+  "engines": {
+    "node": "8.11.*"
   },
   "dependencies": {
     "hapi": "^17.5.2",

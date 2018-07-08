@@ -5,8 +5,8 @@ const Path = require('path');
 
     try {
         const server = Hapi.server({
-            port: process.env.NODE_PORT, 
-            host: process.env.NODE_HOST,
+            port: process.env.npm_package_config_port,
+            host: process.env.npm_package_config_host,
 
             routes: {
                 files: {
@@ -14,7 +14,7 @@ const Path = require('path');
                 }
             }
         });
-        
+
         process.on('unhandledRejection', (err) => {
             console.log(err);
             process.exit(1);

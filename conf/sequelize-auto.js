@@ -1,10 +1,12 @@
 var SequelizeAuto = require('sequelize-auto')
 var auto = new SequelizeAuto(
-    'scamDB', 'scam', 'Xx521314', {
-        host: '121.42.186.91',
-        dialect: 'mysql',
+    process.env.npm_package_config_dbname,
+    process.env.npm_package_config_dblogin, 
+    process.env.npm_package_config_dbpwd, {
+        host: process.env.npm_package_config_dbhost,
+        dialect: process.env.npm_package_config_dbtype,
         directory: './models', // prevents the program from writing to disk
-        port: '3306',
+        port: process.env.npm_package_config_dbport,
         additional: {
             timestamps: false
         }
