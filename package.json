@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node main.js",
+    "start": "nodemon main.js",
     "models": "node conf/sequelize-auto.js"
   },
   "dependencies": {
