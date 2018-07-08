@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "node main.js",
+    "models": "node conf/sequelize-auto.js"
+  },
+  "dependencies": {
+    "hapi": "^17.5.2",
+    "hapi-auth-jwt2": "^8.1.0",
+    "hapi-swagger": "^9.1.1",
+    "inert": "^5.1.0",
+    "joi": "^13.4.0",
+    "mysql2": "^1.5.3",
+    "nodemon": "^1.17.5",
+    "sequelize": "^4.38.0",
+    "tedious": "^2.6.1",
+    "vision": "^5.3.3"
+  }
+}
