@@ -1,6 +1,6 @@
 const Hapi = require('hapi');
 const Path = require('path');
-
+const routes = require('./router')();
 (async () => {
 
     try {
@@ -21,7 +21,10 @@ const Path = require('path');
         });
 
         await server.register(require('./conf/hapiplugins')());
-        require('./conf/hapiroutes')(server)
+        console.log(routes)
+
+        server.route(routes)
+
         await server.start();
         console.log(`Server running at: ${server.info.uri}`);
     } catch (err) {
