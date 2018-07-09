@@ -10,7 +10,7 @@ const routes = require('./router')();
 
             routes: {
                 files: {
-                    relativeTo: Path.join(__dirname, 'src')
+                    relativeTo: Path.join(__dirname, 'src')//静态资源配置
                 }
             }
         });
@@ -19,10 +19,9 @@ const routes = require('./router')();
             console.log(err);
             process.exit(1);
         });
-
+        //插件
         await server.register(require('./conf/hapiplugins')());
-        console.log(routes)
-
+        //路由
         server.route(routes)
 
         await server.start();
@@ -30,7 +29,6 @@ const routes = require('./router')();
     } catch (err) {
         console.log(err);
     }
-
 })();
 
 
