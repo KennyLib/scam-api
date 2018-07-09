@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+const config = require("../package.json").config;
 
-const sequelize = new Sequelize(process.env.npm_package_config_dbtype + "://" + process.env.npm_package_config_dblogin + ":" + process.env.npm_package_config_dbpwd + "@" + process.env.npm_package_config_dbhost + ":" + process.env.npm_package_config_dbport + "/" + process.env.npm_package_config_dbname);
+const sequelize = new Sequelize(config.dbtype + "://" + config.dblogin + ":" + config.dbpwd + "@" + config.dbhost + ":" + config.dbport + "/" + config.dbname);
 
 sequelize
     .authenticate()

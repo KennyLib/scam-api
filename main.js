@@ -1,13 +1,12 @@
+const config = require("./package.json").config;
 const Hapi = require('hapi');
 const Path = require('path');
 const routes = require('./router')();
 (async () => {
-
     try {
         const server = Hapi.server({
-            port: process.env.npm_package_config_port,
-            host: process.env.npm_package_config_host,
-
+            port: config.port,
+            host: config.host,
             routes: {
                 files: {
                     relativeTo: Path.join(__dirname, 'src')//静态资源配置

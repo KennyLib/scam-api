@@ -1,12 +1,14 @@
 var SequelizeAuto = require('sequelize-auto')
+const config = require("./package.json").config;
+
 var auto = new SequelizeAuto(
-    process.env.npm_package_config_dbname,
-    process.env.npm_package_config_dblogin, 
-    process.env.npm_package_config_dbpwd, {
-        host: process.env.npm_package_config_dbhost,
-        dialect: process.env.npm_package_config_dbtype,
+    config.dbname,
+    config.dblogin, 
+    config.dbpwd, {
+        host: config.dbhost,
+        dialect: config.dbtype,
         directory: './models', // prevents the program from writing to disk
-        port: process.env.npm_package_config_dbport,
+        port: config.dbport,
         additional: {
             timestamps: false
         }
