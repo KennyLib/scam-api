@@ -1,28 +1,6 @@
 const Joi = require('joi')
-const api = require('../api')()
-const people = {
-    1: {
-        id: 1,
-        name: 'Jen Jones'
-    }
-};
-const validate = async (decoded, request) => {
-
-    if (!people[decoded.id]) {
-        return { isValid: false };
-    }
-    else {
-        return { isValid: true };
-    }
-};
+const api = require('../api')
 module.exports = (server) => {
-    server.auth.strategy('jwt', 'jwt',
-        {
-            key: 'NeverShareYourSecret',          // Never Share your secret key
-            validate: validate,            // validate function defined above
-            verifyOptions: { algorithms: ['HS256'] } // pick a strong algorithm
-        });
-    server.auth.default('jwt');
     server.route([{
         method: 'GET',
         path: '/',

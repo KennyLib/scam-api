@@ -1,5 +1,2 @@
-module.exports = () => {
-    return {
-        scaminfo: require('./scaminfo')()
-    }
-}
+var requireDirectory = require('require-directory');
+module.exports = requireDirectory(module);
