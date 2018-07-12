@@ -6,20 +6,13 @@
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
-    "models": "node conf/sequelize-auto.js"
+    "pm2": "pm2 start main.js",
+    "dev": "nodemon main.js",
+    "models": "node sequelize-auto.js"
   },
-  "config": {
-    "host": "0.0.0.0",
-    "port": "8090",
-    "dbtype": "",
-    "dblogin": "",
-    "dbpwd": "",
-    "dbhost": "",
-    "dbport": "",
-    "dbname": ""
-  },
+  
   "engines": {
-    "node": "8.11.*"
+    "node": "8.11.3"
   },
   "dependencies": {
     "boom": "^7.2.0",
@@ -27,11 +20,15 @@
     "good": "^8.1.1",
     "hapi": "^17.5.2",
     "hapi-auth-jwt2": "^8.1.0",
+    "hapi-rabbit": "^0.0.4",
     "hapi-swagger": "^9.1.1",
     "inert": "^5.1.0",
     "joi": "^13.4.0",
     "mysql2": "^1.5.3",
-    "nodemon": "^1.17.5",
+    "nodemon": "^1.18.1",
+    "pm2": "^3.0.0",
+    "redis": "^2.8.0",
+    "require-directory": "^2.1.1",
     "sequelize": "^4.38.0",
     "tedious": "^2.6.1",
     "vision": "^5.3.3"

@@ -5,8 +5,8 @@ const routes = require('./router')();
 (async () => {
     try {
         const server = Hapi.server({
-            port: config.port,
-            host: config.host,
+            port: process.env.port,
+            host: process.env.host,
             routes: {
                 files: {
                     relativeTo: Path.join(__dirname, 'src')//静态资源配置
