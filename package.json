@@ -6,7 +6,7 @@
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
-    "pm2": "pm2 start main.js",
+    "pm2": "pm2 start main.js --watch -i 10",
     "dev": "nodemon main.js",
     "models": "node sequelize-auto.js"
   },
