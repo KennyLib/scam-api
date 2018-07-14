@@ -23,18 +23,83 @@ Vue.component('scam-list', {
                     title: '修改时间',
                     key: 'update_time'
                 }
+
             ],
-            scamData: []
+            scamData: [],
+            showData: [],
+            dataCount: 0,
+            pageSize: 10,
+            pageNum: 1
         }
     },
     created: () => {
         document.title = '列表'
     },
+    methods: {
+        show(index) {
+            this.$Modal.info({
+                title: 'User Info',
+                content: `内容：${this.showData[index].content}`
+            })
+        },
+        remove(index) {
+            this.showData[index].id
+            for (const key in this.scamData) {
+                if (this.scamData[key].id == this.showData[index].id) {
+                    this.scamData.splice(key, 1);
+                }
+            }
+            this.showData.splice(index, 1);
+        },
+        handlePage(index) {
+            this.showData = this.scamData.slice(this.pageSize * (index - 1), this.pageSize * index)
+        },
+        handlePageSize(value) {
+            this.pageSize = value
+        }
+    },
     mounted() {
+        this.columns.push({
+            title: '编辑',
+            key: 'action',
+            align: 'center',
+            render: (h, params) => {
+                return h('div', [
+                    h('Button', {
+                        props: {
+                            type: 'primary',
+                            size: 'small'
+                        },
+                        style: {
+                            marginRight: '5px'
+                        },
+                        on: {
+                            click: () => {
+                                this.show(params.index)
+                            }
+                        }
+                    }, '显示'),
+                    h('Button', {
+                        props: {
+                            type: 'error',
+                            size: 'small'
+                        },
+                        on: {
+                            click: () => {
+                                this.remove(params.index)
+                            }
+                        }
+                    }, '移除')
+                ]);
+            }
+        })
+
         this.$nextTick(() => {
             axios.post('/api/scam/list').then((res) => {
                 if (res.data.code == 200) {
                     this.scamData = res.data.data
+                    this.showData = this.scamData.slice(0, this.pageSize)
+                    this.dataCount = this.scamData.length
                     this.loading = false
                 } else {
                     this.$Message.error(res.data.msg);
@@ -44,25 +109,44 @@ Vue.component('scam-list', {
             })
         })
     },
-    template: '<Table :loading="loading" :columns="columns" :data="scamData"></Table>'
+    template: '<div><Table :loading="loading" :columns="columns" :data="showData" stripe></Table>' +
+        '<div style="margin: 10px;overflow: hidden">' +
+        '<div style="float: right;">' +
+        '<Page :total="dataCount" :current="1" :page-size="pageSize" size="small"  @on-change="handlePage" @on-page-size-change="handlePageSize" show-elevator></Page>' +
+        '</div></div></div>'
 })
 Vue.component('scam-add', {
     data: () => {
         return {
             form: {
+                id: '',
                 content: '',
+                status: '',
                 wechartjson: '_'
             }
         }
     },
-    created: () => {
-        document.title = '添加'
+    mounted() {
+        document.title = this.$route.params.id ? '编辑' : '添加'
+        if (this.$route.params.id) {
+            this.$nextTick(() => {
+                axios.post('/api/scam/getbyid', { id: this.$route.params.id }).then((res) => {
+                    this.form.id = res.data.id;
+                    this.form.content = res.data.content;
+                    this.form.status = res.data.scam_status;
+                }).catch(function (error) {
+                    this.$Message.error(error);
+                })
+            })
+
+        }
     },
     methods: {
         handleSubmit(name) {
+            let url = this.$route.params.id ? '/api/scam/update' : '/api/scam/create'
             this.$nextTick(() => {
                 axios.post(
-                    '/api/scam/create',
+                    url,
                     this.form,
                     {
                         headers: {
@@ -70,7 +154,7 @@ Vue.component('scam-add', {
                         }
                     }).then((res) => {
                         this.$Message.success('submit');
-                        this.$router.push('/scamlist')
+                        this.$router.push('/scam')
                     }).catch(function (error) {
                         console.log(error);
                     })

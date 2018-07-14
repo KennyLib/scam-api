@@ -9,5 +9,5 @@ module.exports = {
         description: 'Get todo',
         notes: '返回查询结果'
     },
-    handler: api.scaminfo.select
+    handler: api.scaminfo.select.findAll
 }

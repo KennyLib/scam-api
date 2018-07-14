@@ -12,7 +12,9 @@ module.exports = {
         validate: {
             payload: {
                 id: Joi.number().required().description('查询ID'),
-                status: Joi.number().required().description('状态更新')
+                content: Joi.string().description('状态更新'),
+                status: Joi.number().required().description('状态更新'),
+                wechartjson: Joi.string().description('微信登录相关信息')
             }
         }
     },

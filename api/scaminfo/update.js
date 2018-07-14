@@ -3,9 +3,9 @@ const scaminfoModel = sequelize.import('../../models/scaminfo')
 module.exports = async (req, reply) => {
     try {
 
-        let scaminfo = await scaminfoModel.findById(req.query.id)
-        scaminfo.content = req.query.content || scaminfo.content
-        scaminfo.scam_status = req.query.status || scaminfo.scam_status
+        let scaminfo = await scaminfoModel.findById(req.payload.id)
+        scaminfo.content = req.payload.content || scaminfo.content
+        scaminfo.scam_status = req.payload.status || scaminfo.scam_status
         scaminfo.update_time = new Date()
         await scaminfo.save()
         if (scaminfo || scaminfo.length > 0) {

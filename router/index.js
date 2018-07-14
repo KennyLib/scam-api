@@ -5,6 +5,7 @@ let resRoutes = [
     // routes.home,
     routes.api.index,
     routes.api.scam.list,
+    routes.api.scam.getbyid,
     routes.api.scam.create,
     routes.api.scam.update
 ]
