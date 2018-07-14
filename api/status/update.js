@@ -2,7 +2,6 @@ const sequelize = require('../../conf/sequelize')()
 const statusModel = sequelize.import('../../models/status')
 module.exports = async (req, reply) => {
     try {
-
         let _status = await statusModel.findById(req.payload.id)
         _status.status = req.payload.status || _status.status
         _status.update_time = new Date()

@@ -6,10 +6,17 @@ module.exports = {
             let res = await statusModel.findAll({
                 order: [['create_time', 'DESC']]
             })
-            res = {
-                code: 200,
-                msg: 'success',
-                data: res
+            if (res || res.length > 0) {
+                res = {
+                    status: 200,
+                    message: 'success',
+                    data: res
+                }
+            } else {
+                res = {
+                    status: 1001,
+                    message: '查询失败'
+                }
             }
             return JSON.stringify(res)
         } catch (error) {
@@ -23,6 +30,18 @@ module.exports = {
         async (req, reply) => {
             try {
                 let res = await statusModel.findById(req.payload.id)
+                if (res || res.length > 0) {
+                    res = {
+                        status: 200,
+                        message: 'success',
+                        data: res
+                    }
+                } else {
+                    res = {
+                        status: 1001,
+                        message: '查询失败'
+                    }
+                }
                 return JSON.stringify(res)
             } catch (error) {
                 return {

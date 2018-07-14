@@ -11,7 +11,7 @@ let resRoutes = [
     routes.api.status.list,
     routes.api.status.create,
     routes.api.status.update,
-
+    routes.api.status.getbyid,
 ]
 module.exports = () => {
     return resRoutes
