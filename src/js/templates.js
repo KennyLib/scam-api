@@ -4,7 +4,7 @@ var templates = {
         '<Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">' +
         '<MenuItem name="1-1">' +
         '<Icon type="ios-navigate"></Icon>' +
-        '<span>Option 1</span>' +
+        '<span>Scams</span>' +
         '</MenuItem>' +
         '<MenuItem name="1-2">' +
         '<Icon type="search"></Icon>' +
@@ -21,7 +21,7 @@ var templates = {
         '<Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: \'20px 20px 0\'}" type="navicon-round" size="24"></Icon>' +
         '</Header>' +
         '<Content :style="{margin: \'20px\', background: \'#fff\', minHeight: \'260px\'}">' +
-        'Content' +
+        '<router-view></router-view>' +
         '</Content>' +
         '</Layout>' +
         '</Layout></div>',

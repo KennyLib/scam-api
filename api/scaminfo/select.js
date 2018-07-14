@@ -3,7 +3,12 @@ const scaminfoModel = sequelize.import('../../models/scaminfo')
 module.exports = {
     findAll: async (req, reply) => {
         try {
-            let res = await scaminfoModel.findAll()
+            let res = await scaminfoModel.findAll({
+                where: {
+                    scam_status: req.payload.status
+                },
+                order: [['create_time', 'DESC']]
+            })
             res = {
                 code: 200,
                 msg: 'success',

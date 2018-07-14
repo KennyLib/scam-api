@@ -4,6 +4,10 @@ Vue.component('scam-layout', {
             isCollapsed: false
         }
     },
+    created: () => {
+        document.title = '首页'
+    },
+
     computed: {
         rotateIcon() {
             return [
@@ -94,7 +98,7 @@ Vue.component('scam-list', {
                 return h('div', [
                     h('Button', {
                         props: {
-                            type: 'primary',
+                            type: 'info',
                             size: 'small'
                         },
                         style: {
@@ -106,6 +110,20 @@ Vue.component('scam-list', {
                             }
                         }
                     }, '显示'),
+                    h('Button', {
+                        props: {
+                            type: 'primary',
+                            size: 'small'
+                        },
+                        style: {
+                            marginRight: '5px'
+                        },
+                        on: {
+                            click: () => {
+                                this.$router.push('/scam/edit/' + params.row.id)
+                            }
+                        }
+                    }, '编辑'),
                     h('Button', {
                         props: {
                             type: 'error',
@@ -122,7 +140,7 @@ Vue.component('scam-list', {
         })
 
         this.$nextTick(() => {
-            axios.post('/api/scam/list').then((res) => {
+            axios.post('/api/scam/list', { status: 1 }).then((res) => {
                 if (res.data.code == 200) {
                     this.scamData = res.data.data
                     this.showData = this.scamData.slice(0, this.pageSize)
