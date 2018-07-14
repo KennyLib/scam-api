@@ -1,7 +1,7 @@
 const api = require('../../../api')
 
 module.exports = {
-    method: 'GET',
+    method: ['GET', 'post'],
     path: '/api/scam/list',
     config: {
         auth: false,

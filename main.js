@@ -6,12 +6,7 @@ const routes = require('./router')();
     try {
         const server = Hapi.server({
             port: process.env.port,
-            host: process.env.host,
-            routes: {
-                files: {
-                    relativeTo: Path.join(__dirname, 'src')//静态资源配置
-                }
-            }
+            host: process.env.host
         });
 
         process.on('unhandledRejection', (err) => {
