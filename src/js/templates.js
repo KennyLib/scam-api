@@ -1,6 +1,7 @@
 Vue.component('scam-list', {
     data: () => {
         return {
+            loading: true,
             columns: [
                 {
                     title: '#',
@@ -34,7 +35,7 @@ Vue.component('scam-list', {
             axios.post('/api/scam/list').then((res) => {
                 if (res.data.code == 200) {
                     this.scamData = res.data.data
-                    this.$Message.success(res.data.msg);
+                    this.loading = false
                 } else {
                     this.$Message.error(res.data.msg);
                 }
@@ -43,7 +44,7 @@ Vue.component('scam-list', {
             })
         })
     },
-    template: '<Table :columns="columns" :data="scamData"></Table>'
+    template: '<Table :loading="loading" :columns="columns" :data="scamData"></Table>'
 })
 Vue.component('scam-add', {
     data: () => {
@@ -60,18 +61,19 @@ Vue.component('scam-add', {
     methods: {
         handleSubmit(name) {
             this.$nextTick(() => {
-                axios({
-                    method: 'post',
-                    url: '/api/scam/create',
-                    data: this.form,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then((res) => {
-                    this.$Message.success('submit');
-                }).catch(function (error) {
-                    console.log(error);
-                })
+                axios.post(
+                    '/api/scam/create',
+                    this.form,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((res) => {
+                        this.$Message.success('submit');
+                        this.$router.push('/scamlist')
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
             })
         }
     },
