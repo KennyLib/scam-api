@@ -12,6 +12,7 @@ module.exports = {
         validate: {
             payload: {
                 id: Joi.number().description('ID'),
+                parentid: Joi.description('查询ID'),
                 status: Joi.description('状态名称')
             }
         }

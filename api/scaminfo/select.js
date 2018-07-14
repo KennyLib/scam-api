@@ -30,6 +30,11 @@ module.exports = {
         async (req, reply) => {
             try {
                 let res = await scaminfoModel.findById(req.payload.id)
+                res = {
+                    code: 200,
+                    msg: 'success',
+                    data: res
+                }
                 return JSON.stringify(res)
             } catch (error) {
                 return {

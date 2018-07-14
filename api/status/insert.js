@@ -9,20 +9,20 @@ module.exports = async (req, reply) => {
         })
         if (res || res.length > 0) {
             res = {
-                status: 200,
+                code: 200,
                 message: 'success',
                 data: res
             }
         } else {
             res = {
-                status: 1001,
+                code: 1001,
                 message: '插入失败'
             }
         }
         return JSON.stringify(res)
     } catch (error) {
         return {
-            status: 404,
+            code: 404,
             message: error
         }
     }

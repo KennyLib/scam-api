@@ -6,12 +6,13 @@ module.exports = {
     path: '/api/status/create',
     config: {
         auth: false,
-        tags: ['api','status'],
+        tags: ['api'],
         description: 'Get todo',
         notes: '返回插入结果',
         validate: {
             payload: {
-                parentid: Joi.number().description('查询ID'),
+                id: Joi.description('ID'),
+                parentid: Joi.description('查询ID'),
                 status: Joi.description('状态名称')
             }
         }

@@ -6,7 +6,10 @@ const app = new Vue({
                 children: [
                     { path: '/scam/add', component: { template: '<scam-add></scam-add>' } },
                     { path: '/scam/edit/:id', component: { template: '<scam-add></scam-add>' } },
-                    { path: '/scam', component: { template: '<scam-list></scam-list>' } }
+                    { path: '/scam', component: { template: '<scam-list></scam-list>' } },
+                    { path: '/status/add', component: { template: '<status-add></status-add>' } },
+                    { path: '/status/edit/:id', component: { template: '<status-add></status-add>' } },
+                    { path: '/status', component: { template: '<status-list></status-list>' } }
                 ]
             }]
     })

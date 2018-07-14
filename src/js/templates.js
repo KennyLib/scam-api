@@ -37,5 +37,18 @@ var templates = {
         '<FormItem>' +
         '<Button type="primary" @click="handleSubmit(\'form\')">提交</Button>' +
         '</FormItem>' +
+        '</Form>',
+    status_list: '<div><Table :loading="loading" :columns="columns" :data="showData" stripe></Table>' +
+        '<div style="margin: 10px;overflow: hidden">' +
+        '<div style="float: right;">' +
+        '<Page :total="dataCount" :current="1" :page-size="pageSize" size="small"  @on-change="handlePage" @on-page-size-change="handlePageSize" show-elevator></Page>' +
+        '</div></div></div>',
+    status_add: '<Form :model="form" label-position="right" :label-width="100">' +
+        '<FormItem label="Status">' +
+        '<Input v-model="form.status" type="textarea" :rows="4" placeholder="内容"></Input>' +
+        '</FormItem>' +
+        '<FormItem>' +
+        '<Button type="primary" @click="handleSubmit(\'form\')">提交</Button>' +
+        '</FormItem>' +
         '</Form>'
 }
