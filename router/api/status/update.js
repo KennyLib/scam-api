@@ -3,17 +3,18 @@ const api = require('../../../api')
 
 module.exports = {
     method: ['post'],
-    path: '/api/scam/list',
+    path: '/api/status/update',
     config: {
         auth: false,
-        tags: ['api'],
+        tags: ['api','status'],
         description: 'Get todo',
-        notes: '返回查询结果',
+        notes: '返回更新结果',
         validate: {
             payload: {
-                status: Joi.description('状态')
+                id: Joi.number().description('ID'),
+                status: Joi.description('状态名称')
             }
         }
     },
-    handler: api.scaminfo.select.findAll
+    handler: api.status.update
 }

@@ -12,8 +12,8 @@ module.exports = {
         validate: {
             payload: {
                 id: Joi.description('查询ID'),
-                content: Joi.description('状态更新'),
-                status: Joi.description('状态更新'),
+                content: Joi.description('内容'),
+                status: Joi.description('状态'),
                 wechartjson: Joi.description('微信登录相关信息')
            }
         }

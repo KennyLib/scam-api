@@ -2,10 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('status', {
-		status: {
-			type: DataTypes.STRING(200),
-			allowNull: true
-		},
 		parent_id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false
@@ -13,7 +9,12 @@ module.exports = function(sequelize, DataTypes) {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
+		},
+		status: {
+			type: DataTypes.STRING(200),
+			allowNull: true
 		},
 		create_time: {
 			type: DataTypes.DATE,
@@ -21,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		update_time: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: true
 		}
 	}, {
 		tableName: 'status',

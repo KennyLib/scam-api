@@ -3,18 +3,18 @@ const api = require('../../../api')
 
 module.exports = {
     method: ['post'],
-    path: '/api/status/list',
+    path: '/api/status/create',
     config: {
         auth: false,
-        tags: ['api'],
+        tags: ['api','status'],
         description: 'Get todo',
-        notes: '返回查询结果',
+        notes: '返回插入结果',
         validate: {
             payload: {
-                parentid: Joi.description('父级ID'),
+                parentid: Joi.number().description('查询ID'),
                 status: Joi.description('状态名称')
             }
         }
     },
-    handler: api.status.select.findAll
+    handler: api.status.insert
 }

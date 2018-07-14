@@ -9,6 +9,8 @@ let resRoutes = [
     routes.api.scam.create,
     routes.api.scam.update,
     routes.api.status.list,
+    routes.api.status.create,
+    routes.api.status.update,
 
 ]
 module.exports = () => {
