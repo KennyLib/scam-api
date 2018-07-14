@@ -3,7 +3,7 @@ const scaminfoModel = sequelize.import('../../models/scaminfo')
 module.exports = async (req, reply) => {
     try {
         let res = await scaminfoModel.create({
-            content: req.query.content,
+            content: req.query.content || req.payload.content,
             account_id: 1,
             scam_status: 1,
             create_time: new Date()

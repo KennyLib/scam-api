@@ -2,7 +2,7 @@ const Joi = require('joi')
 const api = require('../../../api')
 
 module.exports = {
-    method: ['GET', 'post'],
+    method: ['post'],
     path: '/api/scam/update',
     config: {
         auth: false,
@@ -10,7 +10,7 @@ module.exports = {
         description: 'Get todo',
         notes: '返回更新结果',
         validate: {
-            query: {
+            payload: {
                 id: Joi.number().required().description('查询ID'),
                 status: Joi.number().required().description('状态更新')
             }

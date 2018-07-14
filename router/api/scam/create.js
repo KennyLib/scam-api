@@ -2,7 +2,7 @@ const Joi = require('joi')
 const api = require('../../../api')
 
 module.exports = {
-    method: ['GET', 'post'],
+    method: ['post'],
     path: '/api/scam/create',
     config: {
         auth: false,
@@ -10,7 +10,7 @@ module.exports = {
         description: 'Get todo',
         notes: '返回插入结果',
         validate: {
-            query: {
+            payload: {
                 content: Joi.string().required().description('提交主题内容'),
                 wechartjson: Joi.string().required().description('微信登录相关信息')
             }

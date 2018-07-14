@@ -38,6 +38,8 @@ Vue.component('scam-list', {
                 } else {
                     this.$Message.error(res.data.msg);
                 }
+            }).catch(function (error) {
+                this.$Message.error(error);
             })
         })
     },
@@ -48,7 +50,7 @@ Vue.component('scam-add', {
         return {
             form: {
                 content: '',
-                wechartjson: ''
+                wechartjson: '_'
             }
         }
     },
@@ -58,15 +60,14 @@ Vue.component('scam-add', {
     methods: {
         handleSubmit(name) {
             this.$nextTick(() => {
-                axios.get(
-                    '/api/scam/create',
-                    // this.form,
-                    // {
-                    //     headers: {
-                    //         'Content-Type': 'application/x-www-form-urlencoded'
-                    //     }
-                    // }
-                ).then((res) => {
+                axios({
+                    method: 'post',
+                    url: '/api/scam/create',
+                    data: this.form,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((res) => {
                     this.$Message.success('submit');
                 }).catch(function (error) {
                     console.log(error);
