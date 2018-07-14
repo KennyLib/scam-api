@@ -11,9 +11,11 @@ module.exports = {
         notes: '返回插入结果',
         validate: {
             payload: {
-                content: Joi.string().required().description('提交主题内容'),
-                wechartjson: Joi.string().required().description('微信登录相关信息')
-            }
+                id: Joi.number().required().description('查询ID'),
+                content: Joi.string().description('状态更新'),
+                status: Joi.number().required().description('状态更新'),
+                wechartjson: Joi.string().description('微信登录相关信息')
+           }
         }
     },
     handler: api.scaminfo.insert
