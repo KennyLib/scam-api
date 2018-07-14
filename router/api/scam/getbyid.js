@@ -11,7 +11,7 @@ module.exports = {
         notes: '返回查询结果',
         validate: {
             payload: {
-                id: Joi.number().required().description('查询ID')
+                id: Joi.description('查询ID')
             }
         }
     },

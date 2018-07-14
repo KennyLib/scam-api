@@ -12,6 +12,15 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		id: {
 			type: DataTypes.INTEGER(11),
+			allowNull: false,
+			primaryKey: true
+		},
+		create_time: {
+			type: DataTypes.DATE,
+			allowNull: true
+		},
+		update_time: {
+			type: DataTypes.DATE,
 			allowNull: false
 		}
 	}, {

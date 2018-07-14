@@ -3,7 +3,7 @@ const api = require('../../../api')
 
 module.exports = {
     method: ['post'],
-    path: '/api/scam/list',
+    path: '/api/status/list',
     config: {
         auth: false,
         tags: ['api'],
@@ -15,5 +15,5 @@ module.exports = {
             }
         }
     },
-    handler: api.scaminfo.select.findAll
+    handler: api.status.select.findAll
 }

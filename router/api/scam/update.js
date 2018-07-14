@@ -11,10 +11,10 @@ module.exports = {
         notes: '返回更新结果',
         validate: {
             payload: {
-                id: Joi.number().required().description('查询ID'),
-                content: Joi.string().description('状态更新'),
-                status: Joi.number().required().description('状态更新'),
-                wechartjson: Joi.string().description('微信登录相关信息')
+                id: Joi.description('查询ID'),
+                content: Joi.description('状态更新'),
+                status: Joi.description('状态更新'),
+                wechartjson: Joi.description('微信登录相关信息')
             }
         }
     },

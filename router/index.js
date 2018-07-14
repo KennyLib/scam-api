@@ -7,7 +7,9 @@ let resRoutes = [
     routes.api.scam.list,
     routes.api.scam.getbyid,
     routes.api.scam.create,
-    routes.api.scam.update
+    routes.api.scam.update,
+    routes.api.status.list,
+
 ]
 module.exports = () => {
     return resRoutes

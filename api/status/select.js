@@ -1,16 +1,9 @@
 const sequelize = require('../../conf/sequelize')()
-const scaminfoModel = sequelize.import('../../models/scaminfo')
+const statusModel = sequelize.import('../../models/status')
 module.exports = {
     findAll: async (req, reply) => {
         try {
-            let _where = {}
-            if (req.payload.status) {
-                where = {
-                    scam_status: req.payload.status
-                }
-            }
-            let res = await scaminfoModel.findAll({
-                where: _where,
+            let res = await statusModel.findAll({
                 order: [['create_time', 'DESC']]
             })
             res = {
@@ -29,7 +22,7 @@ module.exports = {
     findById:
         async (req, reply) => {
             try {
-                let res = await scaminfoModel.findById(req.payload.id)
+                let res = await statusModel.findById(req.payload.id)
                 return JSON.stringify(res)
             } catch (error) {
                 return {
